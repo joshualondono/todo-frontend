@@ -3,10 +3,16 @@ import "./App.css";
 
 //Components
 
-function Todo({ todo }) {
+function Todo({ todo, index, completeTodo }) {
   return (
-    <div className="todo">
+    <div 
+      className="todo"
+      style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
+    >
       {todo.text}
+      <div>
+        <button onClick={() => completeTodo(index)}>Complete</button>
+      </div>
     </div>
   );
 };
@@ -50,10 +56,19 @@ function App() {
     }
   ]);
 
+  //CRUD Functions
   const addTodo = text => {
     const newTodos = [...todos, { text }];
     setTodos(newTodos);
   }
+
+  const completeTodo = index => {
+    const newTodos = [...todos];
+    newTodos[index].isCompleted = true;
+    setTodos(newTodos);
+  };
+
+
 
   return (
     <div className="app">
