@@ -34,6 +34,12 @@ function TodoForm({ addTodo }) {
 }
 
 function App() {
+  
+  const addTodo = text => {
+    const newTodos = [...todos, { text }];
+    setTodos(newTodos);
+  }
+
   const [todos, setTodos] = React.useState([
     { text: "Need to workout at 1pm" },
     { text: "Meet friend for lunch" },
